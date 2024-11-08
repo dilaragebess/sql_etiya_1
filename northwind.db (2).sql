@@ -1,3 +1,33 @@
+SQL Workshop 2 Questions:
+   
+Her kategorideki (CategoryID) ürün sayısını gösteren bir sorgu yazın.
+Birim fiyatı en yüksek 5 ürünü listeleyin.
+Her tedarikçinin sattığı ürünlerin ortalama fiyatını listeleyin.
+"Products" tablosunda birim fiyatı 100'den büyük olan ürünlerin kategorilerini ve bu kategorilerdeki ortalama fiyatı listeleyin.
+"OrderDetails" tablosunda birim fiyat ve miktar çarpımıyla toplam satış değeri 1000'den fazla olan siparişleri listeleyin.
+En son sevk edilen 10 siparişi listeleyin.
+"Products" tablosundaki ürünlerin ortalama fiyatını hesaplayın.
+"Products" tablosunda fiyatı 50’den büyük olan ürünlerin toplam stok miktarını hesaplayın.
+"Orders" tablosundaki en eski sipariş tarihini bulun.
+"Employees" tablosundaki çalışanların kaç yıl önce işe başladıklarını gösteren bir sorgu yazın.
+"OrderDetails" tablosundaki her bir sipariş için, birim fiyatın toplamını yuvarlayarak (ROUND) hesaplayın.
+"Products" tablosunda stoktaki (UnitsInStock) ürün sayısını gösteren bir COUNT sorgusu yazın.
+"Products" tablosundaki en düşük ve en yüksek fiyatları hesaplayın.
+"Orders" tablosunda her yıl kaç sipariş alındığını listeleyin (YEAR() fonksiyonunu kullanarak).
+"Employees" tablosundaki çalışanların tam adını (FirstName + LastName) birleştirerek gösterin.
+"Customers" tablosundaki şehir adlarının uzunluğunu (LENGTH) hesaplayın.
+"Products" tablosundaki her ürünün fiyatını iki ondalık basamağa yuvarlayarak gösterin.
+"Orders" tablosundaki tüm siparişlerin toplam sayısını bulun.
+"Products" tablosunda her kategorideki (CategoryID) ürünlerin ortalama fiyatını (AVG) hesaplayın.
+"Orders" tablosunda sevk tarihi (ShippedDate) boş olan siparişlerin yüzdesini (COUNT ve toplam sipariş sayısını kullanarak) hesaplayın.
+"Products" tablosundaki en pahalı ürünün fiyatını bulun ve bir fonksiyon kullanarak fiyatı 10% artırın.
+"Products" tablosundaki ürün adlarının ilk 3 karakterini gösterin (SUBSTRING).
+"Orders" tablosunda verilen siparişlerin yıl ve ay bazında kaç sipariş alındığını hesaplayın (YEAR ve MONTH fonksiyonları).
+"OrderDetails" tablosunda toplam sipariş değerini (UnitPrice * Quantity) hesaplayıp, bu değeri iki ondalık basamağa yuvarlayarak gösterin.
+"Products" tablosunda stokta olmayan (UnitsInStock = 0) ürünlerin fiyatlarını toplam fiyat olarak hesaplayın.
+
+Answers: 
+   
 SELECT categoryid, unitsinstock FROM Products 
 group by categoryid
 
