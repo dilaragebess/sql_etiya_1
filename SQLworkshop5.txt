@@ -1,0 +1,239 @@
+select * from products p 
+select * from suppliers s 
+--1
+
+select product_name, product_id  from products p where product_id = 
+(select product_id  from order_details od 
+group by product_id 
+order by SUM(od.quantity) desc 
+limit 1)
+
+--2
+
+select min(p.unit_price) from products p 
+where category_id  = (select category_id  from categories c  
+where c.category_name = 'Beverages')
+
+
+HOMEWORK 1
+--1- 
+select p.product_name, p.quantity_per_unit from products p 
+
+--2
+select p.product_id, p.product_name from products p 
+where discontinued = 1
+
+--4
+select  p.product_id, p.product_name, p.unit_price from products p 
+where unit_price < 20
+
+--5
+select  p.product_id, p.product_name, p.unit_price from products p 
+where unit_price < 25 and unit_price > 15
+
+--6
+select p.product_name, p.units_on_order, p.units_in_stock from products p 
+where units_on_order > units_in_stock 
+
+--7
+select p.product_name from products p 
+where p.product_name like 'A%'
+
+
+--8
+select p.product_name from products p 
+where p.product_name like '%i'
+
+--9
+select p.product_name, p.unit_price, (unit_price + (unit_price *18/100)) KDV 
+from products p 
+
+--10
+select COUNT(p.product_id) from products p 
+where unit_price > 30 
+
+--11
+select LOWER(p.product_name) product_name, p.unit_price  from products p 
+order by unit_price desc 
+
+--12
+select concat(e.first_name || ' ' || e.last_name) employee_name from employees e  
+
+--13
+select s.company_name from suppliers s 
+where region is null 
+
+--14
+select s.company_name from suppliers s 
+where region is not null 
+
+--15
+select UPPER(concat(product_name || '_TR')) product_name from products p 
+
+--16
+select concat('TR_' || product_name) product_name from products p 
+where unit_price < 20 
+
+
+--17
+select * from products p
+where unit_price = (select MAX(unit_price) from products p2)
+
+
+--18
+select p.product_name ,p.unit_price  from products p
+order by unit_price desc
+limit 10
+
+
+--19
+select p.product_name , p.unit_price  from products p
+where unit_price > (select avg(unit_price)from products p2)
+
+
+--20
+select sum(unit_price*units_in_stock) from products p
+
+
+--21
+select count(p.product_id) from products p 
+where discontinued = 0 
+select count(p.product_id) from products p 
+where discontinued = 1
+
+--22
+select c.category_name , * from products p 
+join categories c on p.category_id = c.category_id 
+
+
+--23
+select c.category_name , avg(p.unit_price) from products p 
+join categories c on p.category_id = c.category_id 
+group by category_name 
+
+
+--24
+select p.product_name ,c.category_name , p.unit_price from products p 
+join categories c on p.category_id = c.category_id 
+where unit_price = (select max(unit_price) from products p2) 
+
+
+--25
+select p.product_name ,c.category_name , s.company_name  from products p 
+join categories c on p.category_id = c.category_id 
+join suppliers s on p.supplier_id = s.supplier_id 
+where p.product_id  = (select od.product_id from order_details od group by od.product_id order by SUM(quantity) desc limit 1) 
+
+
+--26
+select p.product_id, p.product_name ,S.company_name ,S.phone  from products p 
+join suppliers s on p.supplier_id = s.supplier_id 
+join (select product_id from products p2 where units_in_stock = 0) no_Stock on no_Stock.product_id = p.product_id 
+
+
+--27
+select o.ship_address , e.first_name , e.last_name from orders o
+join employees e on o.employee_id = e.employee_id 
+where date_part('year', o.order_date ) = '1998' and date_part('month', o.order_date ) = '3'
+
+
+--28
+
+select count(o.order_id) from orders o 
+where date_part('year', o.order_date ) = '1997' and date_part('month', o.order_date ) = '2'
+
+
+--29
+select count(o.order_id) from orders o 
+where date_part('year', o.order_date ) = '1998' and ship_country = 'London'
+
+
+--30
+select c.contact_name , c.phone from customers c 
+join orders o on c.customer_id = o.customer_id 
+where date_part('year', o.order_date ) = '1997'
+
+
+--31
+select order_id,freight  from orders o 
+where o.freight >= 40 
+
+
+--32
+select o.ship_country , o.customer_id  from orders o 
+where o.freight >= 40 
+
+
+--33
+select order_date , o.ship_city , UPPER(concat(e.first_name || ' ' || e.last_name)) employeeNameSurname from orders o 
+join employees e on o.employee_id = e.employee_id 
+where date_part('year', o.order_date ) = '1997' 
+
+
+--34
+select c.contact_name , c.phone from customers c 
+join orders o on c.customer_id = o.customer_id 
+where date_part('year', o.order_date ) = '1997'
+
+
+--35
+select o.order_date , c.contact_name , concat(e.first_name || ' ' || e.last_name) employeeNameSurnamefrom from customers c 
+join orders o on c.customer_id = o.customer_id 
+join employees e on o.employee_id = e.employee_id 
+
+
+--36
+select order_id from orders o 
+where required_date < shipped_date 
+
+
+--37
+select o.order_date , c.contact_name  from orders o 
+join customers c on o.customer_id = c.customer_id 
+where required_date < shipped_date 
+ 
+
+--38
+select p.product_name, c.category_name , count(p.quantity_per_unit )from order_details od 
+join products p ON od.product_id = p.product_id 
+join categories c on p.category_id = c.category_id 
+join (select product_id from order_details od where od.order_id ='10248') r on od.product_id = r.product_id
+group by p.product_name, c.category_name 
+
+
+--39
+select p.product_name, s.company_name  from order_details od 
+join products p ON od.product_id = p.product_id 
+join suppliers s on p.supplier_id = s.supplier_id 
+join (select product_id from order_details od where od.order_id ='10248') r on od.product_id = r.product_id
+group by p.product_name,  s.company_name 
+
+
+
+--40
+select p.product_name , count(quantity_per_unit)from order_details od 
+join products p ON od.product_id = p.product_id 
+join (select o.order_id  from orders o where o.employee_id= '3' and date_part('year', o.order_date ) = '1997') as q on od.order_id = q.order_id
+group by p.product_name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
