@@ -1,3 +1,28 @@
+SQL Workshop 4 Questions:
+1. En Pahalı Ürünü Getirin
+2. En Son Verilen Siparişi Bulun
+3. Fiyatı Ortalama Fiyattan Yüksek Olan Ürünleri Getirin
+4. Belirli Kategorilerdeki Ürünleri Listeleyin
+5. En Yüksek Fiyatlı Ürünlere Sahip Kategorileri Listeleyin
+6. Bir Ülkedeki Müşterilerin Verdiği Siparişleri Listeleyin
+7. Her Kategori İçin Ortalama Fiyatın Üzerinde Olan Ürünleri Listeleyin
+8. Her Müşterinin En Son Verdiği Siparişi Listeleyin
+9. Her Çalışanın Kendi Departmanındaki Ortalama Maaşın Üzerinde Maaş Alıp Almadığını Bulun
+10. En Az 10 Ürün Satın Alınan Siparişleri Listeleyin
+11. Her Kategoride En Pahalı Olan Ürünlerin Ortalama Fiyatını Bulun
+12. Müşterilerin Verdiği Toplam Sipariş Sayısına Göre Sıralama Yapın
+13. En Fazla Sipariş Vermiş 5 Müşteriyi ve Son Sipariş Tarihlerini Listeleyin
+14. Toplam Ürün Sayısı 15'ten Fazla Olan Kategorileri Listeleyin
+15. En Fazla 5 Farklı Ürün Sipariş Eden Müşterileri Listeleyin
+16. 20'den Fazla Ürün Sağlayan Tedarikçileri Listeleyin
+17. Her Müşteri İçin En Pahalı Ürünü Bulun
+18. 10.000'den Fazla Sipariş Değeri Olan Çalışanları Listeleyin
+19. Kategorisine Göre En Çok Sipariş Edilen Ürünü Bulun
+20. Müşterilerin En Son Sipariş Verdiği Ürün ve Tarihlerini Listeleyin
+21. Her Çalışanın Teslim Ettiği En Pahalı Siparişi ve Tarihini Listeleyin
+22. En Fazla Sipariş Verilen Ürünü ve Bilgilerini Listeleyin
+
+Answers:
 --1
 select productname from Products
 where unitprice = (SELECT max(unitprice) from Products)
